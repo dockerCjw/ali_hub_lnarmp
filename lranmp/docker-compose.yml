@@ -24,12 +24,17 @@ services:
   # nginx 服务器: 对外提供80端口
   nginx:
     build: ./nginx/
+    depends_on:
+      - php5.6-fpm
+      - php7.0-fpm
+      - php7.1-fpm
     ports:
       - "80:80"
       - "443:443"
 
   php5.6-fpm:
     build: ./php5.6-fpm/
+
     volumes:
       - php5.6-fpm:/etc/php/5.6
       - ./var/www/php5.6/:/var/www/php5.6
@@ -51,6 +56,14 @@ services:
     volumes:
       - apache-php-config:/etc/php/7.1/
       - ./var/www/apache2/:/var/www/apache2
+
+  console:
+    build: ./console/
+    volumes_from:
+    - php5.6-fpm
+    - php7.0-fpm
+    - php7.1-fpm
+    - apache-php
 
 volumes:
   # apache的匿名数据卷
