@@ -15,8 +15,10 @@ RUN apt-get update \
   && apt-get install -y software-properties-common \
   && LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php \
   && apt-get update \
-  && apt-get -y install php$PHP_VERSION \
-  && ls -s /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled/
+  && apt-get -y install php$PHP_VERSION
+
+WORKDIR /etc/apache2/mods-enabled
+RUN   ln -s /etc/apache2/mods-available/rewrite.load
 
 RUN apt-get install -y php$PHP_VERSION-mysql \
     && apt-get install -y php$PHP_VERSION-curl \
@@ -25,7 +27,6 @@ RUN apt-get install -y php$PHP_VERSION-mysql \
     && apt-get install -y php$PHP_VERSION-mbstring
 
 # 挂载数据盘——包括apache与php的配置文件、错误日志和工作目录
-VOLUME /etc/apache2/
 VOLUME /var/log/apache2/
 VOLUME /etc/php/$PHP_VERSION/
 
