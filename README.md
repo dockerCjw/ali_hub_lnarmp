@@ -1,7 +1,7 @@
 # ali_hub_lnarmp
 把之前搭建的docker-lanrmp的公共部分存储到阿里hub中
 
-## 第一个部分 已经被存储到阿里hub中的镜像
+## 第一部分 已经被存储到阿里hub中的镜像
 
 ### 1.存储自定义php-fpm的基础镜像(cjw-php-fpm目录)
 
