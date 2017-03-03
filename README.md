@@ -56,4 +56,4 @@ sudo docker pull registry.cn-hangzhou.aliyuncs.com/ubuntu-php-fpm/cjw-console:[�
  * 所有的web项目需要依赖nginx容器
  * 所有的web项目需要把其数据卷关联到console容器
  * 所有的web项目选择各种的数据库
-
+ * 所有的web项目非php文件都不会走fpm,所有的项目数据卷必须关联到nginx上面
