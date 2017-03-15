@@ -20,7 +20,8 @@ RUN apt-get update \
 WORKDIR /etc/apache2/mods-enabled
 RUN   ln -s /etc/apache2/mods-available/rewrite.load
 
-RUN apt-get install -y php$PHP_VERSION-mysql \
+RUN apt-get install -y mcrypt php$PHP_VERSION-mcrypt \
+    && apt-get install -y php$PHP_VERSION-mysql \
     && apt-get install -y php$PHP_VERSION-curl \
     && apt-get install -y php$PHP_VERSION-gd \
     && apt-get install -y php$PHP_VERSION-dom \
@@ -28,7 +29,6 @@ RUN apt-get install -y php$PHP_VERSION-mysql \
 
 # 挂载数据盘——包括apache与php的配置文件、错误日志和工作目录
 VOLUME /var/log/apache2/
-VOLUME /etc/php/$PHP_VERSION/
 
 EXPOSE 80
 EXPOSE 443
