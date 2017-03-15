@@ -11,7 +11,8 @@ ENV PHP_VERSION 7.0
 RUN apt-get update \
   && apt-get install -y openssh-server php$PHP_VERSION vim git wget unzip
 
-RUN apt-get install -y php$PHP_VERSION-mysql \
+RUN apt-get install -y mcrypt php$PHP_VERSION-mcrypt \
+    && apt-get install -y php$PHP_VERSION-mysql \
     && apt-get install -y php$PHP_VERSION-curl \
     && apt-get install -y php$PHP_VERSION-gd \
     && apt-get install -y php$PHP_VERSION-dom \
